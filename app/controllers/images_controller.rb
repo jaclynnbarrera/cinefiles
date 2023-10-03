@@ -1,17 +1,17 @@
 class ImagesController < ApplicationController
 
   def landing
-    time = Time.now.hour
+    @time = Time.now.hour
 
-    case time
+    case @time
     when 5..9
-      puts "display sunrise"
+      @background_image = "sunrise.gif"
     when 10..17
-      puts "display daytime"
+      @background_image = "daytime.gif"
     when 18..21
-      puts "display dusk"
+      @background_image = "dusk.gif"
     else
-      puts "display night"
+      @background_image = "night.gif"
     end
   end
 
