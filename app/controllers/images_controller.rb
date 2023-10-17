@@ -1,18 +1,21 @@
-class ImagesController < ApplicationController
+# frozen_string_literal: true
 
+# Images controller
+
+class ImagesController < ApplicationController
   def landing
     @time = Time.now.hour
 
-    case @time
-    when 5..9
-      @background_image = "sunrise.gif"
-    when 10..17
-      @background_image = "daytime.gif"
-    when 18..21
-      @background_image = "dusk.gif"
-    else
-      @background_image = "night.gif"
-    end
+    @background_image = case @time
+                        when 5..9
+                          'sunrise.gif'
+                        when 10..17
+                          'daytime.gif'
+                        when 18..21
+                          'dusk.gif'
+                        else
+                          'night.gif'
+                        end
   end
 
   def index
@@ -20,6 +23,26 @@ class ImagesController < ApplicationController
   end
 
   def new
+    @image = Image.new
+  end
+
+  def create
+    @image = Image.new(image_params)
+    if @image.save
+      # Handle a successful submission (e.g., redirect to a show page)
+      redirect_to @image, notice: 'Image was successfully created.'
+    else
+      render 'new' # Render the new form again with errors
+    end
+  end
+
+  def show
+    @image = Image.find(params[:id])
+  end
+
+  private
+
+  def image_params
+    params.require(:image).permit(:title, :year, :director, :file)
   end
 end
-

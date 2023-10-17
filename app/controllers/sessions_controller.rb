@@ -26,7 +26,6 @@ class SessionsController < ApplicationController
   private
 
   def admin_credentials_valid?
-    params.require(:session).permit(:username, :password)
-    params[:session][:username] == ENV['ADMIN_USERNAME'] && params[:session][:password] == ENV['ADMIN_PASSWORD']
+    params[:username] == ENV['ADMIN_USERNAME'] && params[:password] == ENV['ADMIN_PASSWORD']
   end
 end
