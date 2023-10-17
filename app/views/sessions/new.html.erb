@@ -1,14 +1,23 @@
-<h1>Login</h1>
-<%= form_tag login_path do %>
-  <div>
-    <%= label_tag 'Username' %>
-    <%= text_field_tag 'username' %>
+<div class="flex items-center justify-center w-screen h-screen">
+  <div class="p-4 bg-white rounded-lg shadow-lg">
+    <%= form_tag login_path do %>
+      <div class="mb-4">
+        <%= label_tag 'Username' %>
+        <%= text_field_tag 'username', nil, class: 'block w-full rounded border-gray-300' %>
+      </div>
+      <div class="mb-4">
+        <%= label_tag 'Password' %>
+        <%= password_field_tag 'password', nil, class: 'block w-full rounded border-gray-300' %>
+      </div>
+      <div>
+        <%= submit_tag 'Log In', class: 'bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700' %>
+      </div>
+    <% end %>
+
+    <% if flash[:error] %>
+      <div class="p-2 mt-2 text-red-500">
+        <%= flash[:error] %>
+      </div>
+    <% end %>
   </div>
-  <div>
-    <%= label_tag 'Password' %>
-    <%= password_field_tag 'password' %>
-  </div>
-  <div>
-    <%= submit_tag 'Log In' %>
-  </div>
-<% end %>
+</div>
