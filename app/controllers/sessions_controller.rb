@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
   def create
     if admin_credentials_valid?
       session[:admin_authenticated] = true
-      redirect_to admin_upload_path
+      redirect_to upload_path
     else
       flash[:error] = 'Incorrect login, please try again'
 

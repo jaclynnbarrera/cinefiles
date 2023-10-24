@@ -1,25 +1,29 @@
-<%= form_for @image, html: { multipart: true } do |f| %>
-  <div class="mb-4">
-    <%= f.label :title %>
-    <%= f.text_field :title, class: 'form-input' %>
-  </div>
+<div class="flex items-center justify-center min-h-screen">
+  <div class="px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
+    <%= form_for @image, html: { multipart: true } do |f| %>
+      <div class="mb-4">
+        <%= f.label :title, class: 'block font-bold text-gray-700' %>
+        <%= f.text_field :title, class: 'form-input mt-1 block w-full rounded-md border-gray-300' %>
+      </div>
 
-  <div class="mb-4">
-    <%= f.label :year %>
-    <%= f.number_field :year, class: 'form-input' %>
-  </div>
+      <div class="mb-4">
+        <%= f.label :year, class: 'block font-bold text-gray-700' %>
+        <%= f.number_field :year, class: 'form-input mt-1 block w-full rounded-md border-gray-300' %>
+      </div>
 
-  <div class="mb-4">
-    <%= f.label :director %>
-    <%= f.text_field :director, class: 'form-input' %>
-  </div>
+      <div class="mb-4">
+        <%= f.label :director, class: 'block font-bold text-gray-700' %>
+        <%= f.text_field :director, class: 'form-input mt-1 block w-full rounded-md border-gray-300' %>
+      </div>
 
-  <div class="mb-4">
-    <%= f.label :image %>
-    <%= f.file_field :image, class: 'form-input' %>
-  </div>
+      <div class="mb-4">
+        <%= f.label :image, class: 'block font-bold text-gray-700' %>
+        <%= f.file_field :image, class: 'form-input mt-1 block w-full rounded-md border-gray-300' %>
+      </div>
 
-  <div class="mb-4">
-    <%= f.submit "Upload Image", class: 'btn' %>
+      <div class="mb-4">
+        <%= f.submit "Upload Image", class: 'btn bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600' %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

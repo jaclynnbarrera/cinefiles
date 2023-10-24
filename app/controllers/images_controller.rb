@@ -3,6 +3,8 @@
 # Images controller
 
 class ImagesController < ApplicationController
+  before_action :ensure_admin_authenticated, only: [:new]
+
   def landing
     @time = Time.now.hour
 
@@ -29,10 +31,9 @@ class ImagesController < ApplicationController
   def create
     @image = Image.new(image_params)
     if @image.save
-      # Handle a successful submission (e.g., redirect to a show page)
       redirect_to @image, notice: 'Image was successfully created.'
     else
-      render 'new' # Render the new form again with errors
+      render 'new'
     end
   end
 
@@ -43,6 +44,13 @@ class ImagesController < ApplicationController
   private
 
   def image_params
-    params.require(:image).permit(:title, :year, :director, :file)
+    params.require(:image).permit(:title, :year, :director, :image)
+  end
+
+  def ensure_admin_authenticated
+    return if session[:admin_authenticated]
+
+    flash[:error] = 'Restricted access'
+    redirect_to images_path
   end
 end

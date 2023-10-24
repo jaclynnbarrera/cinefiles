@@ -1,10 +1,8 @@
-<h1>Images</h1>
-
-<ul>
+<div class="grid grid-cols-3 gap-4 justify-items-center">
     <% @images.each do |image| %>
-        <li>
-            <%= image.title %>
-        </li>
+        <div class="p-4">
+            <%= image_tag(image.image.url, alt: image.title, class: "w-full h-auto") %> <!-- Assuming `image.image.url` provides the image URL -->
+            <div class="mt-2 text-center"><%= image.title %></div>
+        </div>
     <% end %>
-</ul>
-
+</div>
