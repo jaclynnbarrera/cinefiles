@@ -6,14 +6,38 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <main class="">
+    
+    <% unless controller_name == 'images' && action_name == 'landing' %>
+      <!-- Navbar -->
+      <nav class="p-4 bg-black">
+        <div class="container mx-auto">
+          <div class="flex items-center">
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+              <img src="<%= asset_path('cinefiles_logo.png') %>" alt="Logo" class="h-8">
+            </div>
+            
+            <!-- Nav Links -->
+            <div class="ml-auto">
+              <a href="#" class="mx-2 text-white"></a>
+              <a href="#" class="mx-2 text-white"></a>
+              <a href="#" class="mx-2 text-white"></a>
+              <a href="#" class="mx-2 text-white"></a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    <% end %>
+
+    <!-- Main Content -->
+    <main>
       <%= yield %>
     </main>
+
   </body>
 </html>

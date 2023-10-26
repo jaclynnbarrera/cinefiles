@@ -1,8 +1,18 @@
-<div class="grid grid-cols-3 gap-4 justify-items-center">
-    <% @images.each do |image| %>
-        <div class="p-4">
-            <%= image_tag(image.image.url, alt: image.title, class: "w-full h-auto") %> <!-- Assuming `image.image.url` provides the image URL -->
-            <div class="mt-2 text-center"><%= image.title %></div>
+<div class="grid grid-cols-4 gap-4 justify-items-center">
+    <% @images.each_with_index do |image, index| %>
+        <% random_size = [1,1,1,2].sample %> <!-- Some randomness for variety -->
+        <div class="p-4 col-span-<%= random_size %> relative group"> <!-- Added relative and group classes here -->
+            
+            <%= link_to image_path(image.id) do %>
+                <%= image_tag(image.image.url, alt: image.title, class: "w-full h-auto transition-transform transform group-hover:grayscale") %>
+            <% end %>
+
+            <!-- Text content with absolute positioning and opacity 0 by default -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+                <div class="p-1 mb-1 font-mono text-sm text-center text-white bg-black bg-opacity-50"><%= image.title %></div>
+                <div class="p-1 mb-1 font-mono text-sm text-center text-white bg-black bg-opacity-50"><%= image.director %></div>
+                <div class="p-1 mb-1 font-mono text-sm text-center text-white bg-black bg-opacity-50"><%= image.year %></div>
+            </div>
         </div>
     <% end %>
 </div>
